@@ -1,6 +1,13 @@
-const mongoose = require("mongoose");
-const mongoURI = "mongodb://localhost:27017/portfollio";
+import mongoose from "mongoose";
 
-mongoose.connect(mongoURI, () => {
-    console.log("Connected to mongo successfully");
-});
+// db connection
+export const connectDB = () => {
+    mongoose
+        .connect(process.env.MONGO_URI)
+        .then(() => {
+            console.log("Connected DB");
+        })
+        .catch((e) => {
+            console.log("Not connected", e);
+        });
+};
